@@ -1,0 +1,62 @@
+{
+    "German": {
+        "Idiom": "Das ist nicht mein Bier.",
+        "Translation": "That's not my beer.",
+        "Meaning": "That's not my problem or concern."
+    },
+    "Japanese": {
+        "Idiom": "\u733f\u3082\u6728\u304b\u3089\u843d\u3061\u308b\u3002",
+        "Translation": "Even monkeys fall from trees.",
+        "Meaning": "Even experts make mistakes or have accidents."
+    },
+    "Spanish": {
+        "Idiom": "El mundo es un pa\u00f1uelo.",
+        "Translation": "The world is a handkerchief.",
+        "Meaning": "The world is a small place, and you may unexpectedly run into someone you know."
+    },
+    "Italian": {
+        "Idiom": "Mangiare la foglia.",
+        "Translation": "Eat the leaf.",
+        "Meaning": "To catch on to someone's tricks or deceit."
+    },
+    "Russian": {
+        "Idiom": "\u0428\u0430\u043f\u043a\u0430 \u043d\u0435\u0432\u0438\u0434\u0438\u043c\u043a\u0430.",
+        "Translation": "Invisible cap.",
+        "Meaning": "To pretend to be invisible or unnoticed."
+    },
+    "Swedish": {
+        "Idiom": "Att ha is i magen.",
+        "Translation": "To have ice in one's stomach.",
+        "Meaning": "To have nerves of steel or be unemotional in a tough situation."
+    },
+    "French": {
+        "Idiom": "Avoir le cafard.",
+        "Translation": "To have the cockroach.",
+        "Meaning": "To feel sad or depressed."
+    },
+    "Mandarin": {
+        "Idiom": "\u753b\u86c7\u6dfb\u8db3.",
+        "Translation": "To draw a snake and add feet to it.",
+        "Meaning": "To ruin a good thing by adding unnecessary or excessive elements."
+    },
+    "Arabic": {
+        "Idiom": "\u0627\u0644\u0645\u0627\u0621 \u0627\u0644\u0630\u064a \u0644\u0627 \u064a\u062c\u0631\u064a \u064a\u0639\u0648\u0651\u0645 \u0627\u0644\u0633\u0641\u0646.",
+        "Translation": "Still waters run deep.",
+        "Meaning": "Quiet or reserved people can often have strong opinions or feelings."
+    },
+    "Korean": {
+        "Idiom": "\uac1c\uad6c\ub9ac \uc62c\ucc59\uc774 \uc801 \uc0dd\uac01 \ubabb\ud55c\ub2e4.",
+        "Translation": "A frog cannot remember the tadpole stage.",
+        "Meaning": "To have forgotten one's humble beginnings or to be ungrateful."
+    },
+    "Portuguese": {
+        "Idiom": "Quem n\u00e3o tem c\u00e3o, ca\u00e7a com gato.",
+        "Translation": "Whoever doesn't have a dog hunts with a cat.",
+        "Meaning": "To make do with what you have or find alternative solutions."
+    },
+    "Yiddish": {
+        "Idiom": "\u05e7\u05d9\u05d9\u05df \u05d0\u05e4\u05e2\u05dc \u05d6\u05d0\u05b8\u05dc \u05e0\u05d9\u05e9\u05d8 \u05e7\u05dc\u05d9\u05d9\u05df \u05e8\u05d9\u05d9\u05e0\u05d2\u05d9\u05d9\u05df.",
+        "Translation": "No apple should be too small to turn.",
+        "Meaning": "Every opportunity should be seized, no matter how small or insignificant it may seem."
+    }
+}

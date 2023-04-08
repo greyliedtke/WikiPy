@@ -21,9 +21,7 @@ def frame(navtitle: str):
 
 def add_header() -> None:
     menu_items = {
-        'WikEQ': '/#features',
-        'Categories': '/#installation',
-        'Dimensions': '/#demos',
+        'WikEQ': '/WikEq',
         'Why?': '/#why',
     }
     with ui.header() \

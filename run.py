@@ -3,6 +3,7 @@ from typing import Dict
 from nicegui import ui, Tailwind
 import WikEq.Wiki
 import GuessN.Wiki
+import MerMaker.Wiki
 import theme
 
 equation_merm = """

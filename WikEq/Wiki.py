@@ -4,28 +4,9 @@ import theme
 from nicegui import Tailwind, ui
 import WikEq.page_equations, WikEq.page_dimensions
 
-# table for base dimensions
-bd_table = {
-    "columns": [
-        {
-            "name": "dimension",
-            "label": "Dimension",
-            "field": "name",
-            "required": True,
-            "align": "left",
-        },
-        {"name": "units", "label": "SI Units", "field": "units", "sortable": True},
-    ],
-    "rows": [
-        {"name": "Length", "units": "m"},
-        {"name": "Mass", "units": "kg"},
-        {"name": "Time", "units": "s"},
-        {"name": "Electric Current", "units": "A"},
-        {"name": "Temperature", "units": "K"},
-        {"name": "Amount of substance", "units": "mol"},
-        {"name": "Luminosity", "units": "cd"},
-    ],
-}
+bd = ['Length', 'Mass', 'Time', 'Electric Current', 'Temperature', 'Moles', 'Luminosity']
+
+
 
 
 @ui.page("/WikEq")
@@ -36,42 +17,47 @@ def WikEq():
         theme.subtitle("A symbolic solving and dimension referencing equation wiki.")
 
     with theme.row():
-        with ui.card():
+        with theme.cc():
             ui.markdown("### Equation Categories")
-            ui.markdown("Explore equations in certain categories")
-
             # get unique equation categories
             eq_cats = sorted(df_eq["EQ_CAT"].unique())
-            with ui.expansion("Categories"):
-                for e in eq_cats:
-                    ui.link(e, "/WikEq/Categories/" + e)
-                    ui.markdown("")
+            for e in eq_cats:
+                ui.link(e, "/WikEq/Categories/" + e)
+        with theme.cc():
+            ui.markdown("### Example Equations")
+            # 3 random equations
+            eqns = df_eq.sample(n=3)
+            eqns = eqns[["Name", "Eqn"]].sort_values(by="Name")
+            with ui.card():
+                for i,row in eqns.iterrows():
+                    with ui.row():
+                        ui.markdown(f"**[{row['Name']}](/WikEq/Equations/{row['Name']})**: <em>{row['Eqn']}</em>")
 
     with theme.row():
-        with ui.card():
+        with theme.cc():
             ui.markdown("### Base Dimensions")
-            ui.markdown("All dimensions originate from the 7 base dimensions")
-            ui.table(columns=bd_table['columns'], rows=bd_table['rows'], row_key="name")
-    with theme.row():
-        with ui.card():
+            ui.markdown("All dimensions originate from the 7 [base dimensions](https://en.wikipedia.org/wiki/List_of_physical_quantities)")
+            for d in bd:
+                ui.markdown(f"**[{d}](/WikEq/Dimensions/{d})**")
+
+        with theme.cc():
             ui.markdown("### Derived Dimensions")
-            ui.markdown("Combining base dimensions together creates derived dimensions")
+            ui.markdown("Combining base dimensions together creates [derived dimensions](https://en.wikipedia.org/wiki/List_of_physical_quantities)")
             dims = sorted(df_eqd["Base_quantity"].unique())
             with ui.expansion("Dimensions"):
                 for d in dims:
                     ui.link(d, "/WikEq/Dimensions/" + d)
                     ui.markdown("")
 
-
 @ui.page("/WikEq/Categories/{eq_cat}")
 def WikEq(eq_cat):
     theme.add_header()
-    with theme.row():
-        theme.title(f"{eq_cat} Equations")
 
-    with theme.row():
+    with theme.cc():
         # get all equations with blah
-        eqns = df_eq.loc[df_eq["EQ_CAT"] == eq_cat, "Name"].sort_values()
-        with ui.card():
-            for e in eqns:
-                ui.link(e, "/WikEq/Equations/" + e)
+        ui.markdown(f"{eq_cat} Equations")
+
+        eqns = df_eq.loc[df_eq["EQ_CAT"] == eq_cat]
+        eqns = eqns[["Name", "Eqn"]].sort_values(by="Name")
+        for i,row in eqns.iterrows():
+            ui.markdown(f"**[{row['Name']}](/WikEq/Equations/{row['Name']})**: <em>{row['Eqn']}</em>")

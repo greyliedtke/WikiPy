@@ -1,6 +1,7 @@
 from nicegui import ui
 import json
 import theme
+import pandas as pd
 
 def render_mermaid(merm_c):
     merm_j = json.loads(merm_c.content)
@@ -42,10 +43,24 @@ def render_mermaid(merm_c):
     # merm_c.content = merm_txt
 
 
-def new_node(merm_c, node_name, node_container):
+def new_node(merm_c, node_name, node_container, ndf):
     merm_j = json.loads(merm_c.content)
     nodes = merm_j['nodes']
     relations = merm_j['relations']
+    current_nodes = ndf.options
+    print(current_nodes)
+    ndff = pd.DataFrame(data={'Nodes': ['ex'], 'Desc':['desc']})
+    new_row = [node_name, node_name]
+    new_row = pd.DataFrame({'Nodes': [node_name], 'Desc': [node_name]})
+    ndff = pd.concat([ndff, new_row], ignore_index=True)
+    node_container.clear
+    ndf = ui.aggrid.from_pandas(ndff)
+    
+    # rowd = current_nodes['rowData']
+    # rowd.append([node_name, node_name])
+    # ndf.options['rowData'].append(['grey', 90])
+    ndf.update()
+
 
     if node_name in nodes:
         print('duplicate node')
@@ -99,29 +114,35 @@ def page():
 
     with theme.row():
         with theme.cc():
-            ui.markdown("### Node Input")
-            with ui.row():
-                node_input = ui.input('Node')
-                ui.button('Add Node', on_click=lambda: new_node(merm_c, node_input.value, node_container))
-        with theme.cc():
-            ui.markdown("### Relation Input")
+            ui.markdown("### Nodes")
+            md_nodes = ui.markdown('- Nodes')
+            node_container = ui.column()
+            with node_container:
+                dff = pd.DataFrame(data={'Nodes': ['ex'], 'Desc':['desc']})
+                ndf = ui.aggrid.from_pandas(dff)
+            node_input = ui.input('Node')
+            ui.button('Add Node', on_click=lambda: new_node(merm_c, node_input.value, node_container, ndf))
 
-            with ui.row():
-                select_from = ui.select([])
-                select_to = ui.select([])
-                select_type = ui.select(['Dash', 'Arrow'])
-                ui.button('Add Relation', on_click=lambda: new_relation(merm_c.content, select_from.value, select_to.value, select_type.value))
+    with theme.row():
+        with theme.cc():
+            ui.markdown("### Node Input")
+
+        # with theme.cc():
+        #     ui.markdown("### Relation Input")
+
+            # with ui.row():
+            #     select_from = ui.select([])
+            #     select_to = ui.select([])
+            #     select_type = ui.select(['Dash', 'Arrow'])
+                # ui.button('Add Relation', on_click=lambda: new_relation(merm_c.content, select_from.value, select_to.value, select_type.value))
         with theme.cc():
             ui.markdown("### Diagram Control")
             with ui.row():
                 ui.button('Clear', on_click=lambda: clear_all())
 
 
-    with theme.row():
-        with theme.cc():
-            ui.markdown("### Nodes")
-            md_nodes = ui.markdown('- Nodes')
-            node_container = ui.column()
+    
+
 
         with theme.cc():
             ui.markdown("### Relations")

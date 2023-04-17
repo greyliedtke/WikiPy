@@ -21,7 +21,8 @@ def frame(navtitle: str):
 
 def add_header() -> None:
     menu_items = {
-        'WikEQ': '/WikEq'
+        'WikEQ': '/WikEq',
+        'MerMaker': '/MerMaker'
     }
     with ui.header() \
             .classes('items-center duration-200 p-0 px-4 no-wrap') \

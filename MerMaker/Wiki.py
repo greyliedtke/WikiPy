@@ -1,7 +1,11 @@
-from nicegui import ui
+from nicegui import ui, app
 import json
 import theme
 import pandas as pd
+import uuid
+from starlette.middleware.sessions import SessionMiddleware
+from starlette.requests import Request
+
 
 def render_mermaid(merm_c):
     merm_j = json.loads(merm_c.content)
@@ -49,6 +53,8 @@ def new_node(merm_c, node_name, node_container, ndf):
     relations = merm_j['relations']
     current_nodes = ndf.options
     print(current_nodes)
+    session = Request.session
+    session['mermaid_content'] = {'Nodes': ['greyses'], 'Relations': ['greymans']}
     ndff = pd.DataFrame(data={'Nodes': ['ex'], 'Desc':['desc']})
     new_row = [node_name, node_name]
     new_row = pd.DataFrame({'Nodes': [node_name], 'Desc': [node_name]})
@@ -102,7 +108,14 @@ def clear_node(nodes, del_node):
 
 # UI
 @ui.page("/MerMaker")
-def page():
+def page(request: Request):
+
+    session = request.session
+    if 'mermaid_content' in session:
+        print(session['mermaid_content'])
+    # else:
+    #     request.session['mermaid_content'] = {'Nodes': ['grey'], 'Relations': ['greyman']}
+
     theme.add_header()
     
 
@@ -111,6 +124,15 @@ def page():
 
     merm = {'nodes': nodes, 'relations': relations}
     merm_c = ui.markdown(json.dumps(merm))
+
+    def new_noder():
+        session = Request.session
+        # del session['mermaid_content']
+        session['mermaid_content'] = {'Nodes': ['greyman'], 'Relations': ['beast']}
+        print('changed sesh...')
+        print(session['mermaid_content'])
+        session.update()
+        
 
     with theme.row():
         with theme.cc():
@@ -121,7 +143,7 @@ def page():
                 dff = pd.DataFrame(data={'Nodes': ['ex'], 'Desc':['desc']})
                 ndf = ui.aggrid.from_pandas(dff)
             node_input = ui.input('Node')
-            ui.button('Add Node', on_click=lambda: new_node(merm_c, node_input.value, node_container, ndf))
+            ui.button('Add Node', on_click=lambda: new_noder())
 
     with theme.row():
         with theme.cc():

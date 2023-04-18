@@ -4,9 +4,9 @@ import WikEq.Wiki
 import GuessN.Wiki
 import MerMaker.Wiki
 import theme
-from starlette.middleware.sessions import SessionMiddleware
-from starlette.requests import Request
-from nicegui import ui, Tailwind, app
+# from starlette.middleware.sessions import SessionMiddleware
+# from starlette.requests import Request
+# from nicegui import ui, Tailwind, app
 
 
 equation_merm = """
@@ -61,5 +61,4 @@ def WikEq():
         ui.mermaid(equation_merm).classes('bg-[#e6e6e6] p-4 self-stretch rounded flex flex-col gap-2')
 
 ui.colors(primary='#7d7a7a')
-app.add_middleware(SessionMiddleware, secret_key='some_random_string')
 ui.run(port=2999)

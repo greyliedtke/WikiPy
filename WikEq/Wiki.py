@@ -2,7 +2,7 @@ from nicegui import ui
 from WikEq.DF.dfs import df_eq, df_eqv, df_eqd
 import theme
 from nicegui import Tailwind, ui
-import WikEq.page_equations, WikEq.page_dimensions
+import WikEq.page_equations, WikEq.page_dimensions, WikEq.page_create
 
 bd = ['Length', 'Mass', 'Time', 'Electric Current', 'Temperature', 'Moles', 'Luminosity']
 

@@ -10,6 +10,14 @@ import numpy as np
 import streamlit as st
 import streamlit.components.v1 as components
 
+st.set_page_config(
+    page_title="PyMakers",
+    page_icon="📖",
+    layout="wide",
+    initial_sidebar_state="collapsed"
+)
+
+
 # hide style...
 # hide_streamlit_style = """
 #             <style>

@@ -18,6 +18,26 @@ st.set_page_config(
 )
 
 
+c = st.container()
+with c:
+    st.markdown(f"""
+    # WikEq
+    - Symbolic solving equation wiki
+    """)
+st.divider()
+
+c = st.container()
+with c:
+    st.markdown(f"""
+    # Bookie
+    - Chat GPT summary of top 100 books from Goodreads
+    """)
+
+st.divider()
+
+
+
+
 # hide style...
 # hide_streamlit_style = """
 #             <style>
@@ -26,8 +46,3 @@ st.set_page_config(
 #             </style>
 #             """
 # st.markdown(hide_streamlit_style, unsafe_allow_html=True) 
-
-
-st.title('Streamlit Wiki')
-st.header("Do things here")
-

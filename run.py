@@ -1,6 +1,6 @@
 from typing import Dict
 from nicegui import ui, Tailwind
-import WikEq.Wiki
+import NG.Wiki
 import GuessN.Wiki
 import MerMaker.Wiki
 import theme

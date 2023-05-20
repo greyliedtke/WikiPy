@@ -6,7 +6,7 @@ from WikEq.DF.dfs import df_eq, df_eqv, df_eqd
 from WikEq.pages_equation import equation_page
 from WikEq.pages_categories import category_page
 from WikEq.pages_dimensions import dimension_page
-from wikeqfu import solved_eqt
+from Ref import solved_eqt
 
 
 query_params = st.experimental_get_query_params()

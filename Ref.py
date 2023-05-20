@@ -1,6 +1,27 @@
 """
-python file to reference equations and things
+script for helping make wikeq funcs
 """
+
+import streamlit as st
+import streamlit.components.v1 as components
+
+# bootstrap 4 collapse example
+
+
+def pylink(page, txt, params=None):
+    st.markdown(f"## <a href='{page}' target = '_self'>{txt}</a>", unsafe_allow_html=True)
+
+
+def solved_eqt(eq_vars, a):
+    md_t = ""
+    for v in eq_vars:
+        if v == a["Symbol"].values[0]:
+            pass
+        else:
+            md_t += f"{v} = 1 \n"
+    md_t += f"{a['Solved'].values[0]}"
+    return md_t
+
 
 equation_merm = """
 graph LR

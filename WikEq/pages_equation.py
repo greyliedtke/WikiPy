@@ -35,16 +35,14 @@ def equation_page(eq_name):
     eq_vars = df_eqv[df_eqv['EQ_id']==int(eq['EQ_id'])].sort_values(by=['Symbol'])
     eq_vars = eq_vars.set_index('Symbol')
 
-    cols = st.columns(2)
-    with cols[0]: 
-        st.title("Equation Variables")
-        v_table = eq_vars[['Short_Desc', 'SI_Units']]
-        st.dataframe(v_table)
+    st.title("Equation Variables")
+    v_table = eq_vars[['Short_Desc', 'SI_Units']]
+    st.dataframe(v_table)
 
-    with cols[1]:
-        dim_links = sorted(eq_vars['D_Name'].unique())
-        for d in dim_links:
-            st.markdown(f"{d},")
+    # with cols[1]:
+    #     dim_links = sorted(eq_vars['D_Name'].unique())
+    #     for d in dim_links:
+    #         st.markdown(f"{d},")
 
     v_dict = eq_vars.to_dict(orient='index')
     st.title("Symbolic Solving")

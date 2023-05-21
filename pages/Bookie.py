@@ -4,45 +4,36 @@ page for book summaries quickly and in authors tone
 
 import streamlit as st
 import pandas as pd
+import Ref
 
-
+Ref.page_config()
 df = pd.read_json("Bookie/books.json", orient='index')
 
 query_params = st.experimental_get_query_params()
 
-
+# if book has been selected
 if "Book" in query_params:
-    st.markdown("# Bookie Summary")
     book = query_params["Book"][0]
     st.markdown(f"# *{book}*")
     selected = df.loc[book]
-    print(selected)
     st.markdown(f"**{selected['author']}**")
     st.markdown(f"Rank: {selected['Rank']}")
     st.markdown(f"{selected['summaries']}")
 
-    st.divider()
+    st.markdown(
+        "<a href='Bookie' target = '_self'>Top 100 Books</a>",
+        unsafe_allow_html=True,
+    )
 
-    next_b = int(selected["Rank"])+1
-    nb = df.iloc[next_b]
-    nb_name = nb["Book"].replace(" ", "%20")
 
-    st.markdown(f"[Main](/Bookie)")
-    st.markdown(f"[Next](/Bookie?Book={nb_name})")
-
-   
+# list of 100 books
 else:
     st.title("Top 100 Books")
+    st.markdown("*According to [goodreads](https://www.goodreads.com/list/show/2681.Time_Magazine_s_All_Time_100_Novels)")
     dfv = df[['Rank', 'author']]
-    dfv.index.name = "Title"
-    st.dataframe(dfv)
+    for book, row in dfv.iterrows():
+        book_link = book.replace(" ", "%20")
+        book_link = book.replace("'", "%27")
+        r, a = row["Rank"], row["author"]
+        st.markdown(f"{r}. <a href='Bookie?Book={book_link}' target = '_self'>{book}</a> - {a}", unsafe_allow_html=True)
 
-    st.divider()
-    book = "To Kill a Mockingbird"
-    book_link = book.replace(" ", "%20")
-    st.markdown(f"[{book}](/Bookie?Book={book_link})")
-    st.divider()
-
-    book = st.selectbox("Select Book", options=list(df.index))
-    st.markdown("[GoodReads Source](https://www.goodreads.com/list/show/2681.Time_Magazine_s_All_Time_100_Novels)")
-    st.markdown("Summaries generated via openAI model to summarize storty, theme and writing style without spoiling")

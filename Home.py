@@ -2,20 +2,14 @@
 streamlit run Home.py
 """
 
-
 import streamlit as st
 import pandas as pd
 import numpy as np
 import streamlit as st
 import streamlit.components.v1 as components
+import Ref
 
-st.set_page_config(
-    page_title="PyMakers",
-    page_icon="📖",
-    layout="wide",
-    initial_sidebar_state="collapsed",
-)
-
+Ref.page_config()
 
 c = st.container()
 with c:

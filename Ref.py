@@ -6,6 +6,13 @@ import streamlit as st
 import streamlit.components.v1 as components
 
 # bootstrap 4 collapse example
+def page_config():
+    st.set_page_config(
+    page_title="PyMakers",
+    page_icon="📖",
+    layout="wide",
+    initial_sidebar_state="collapsed",
+)
 
 
 def pylink(page, txt, params=None):

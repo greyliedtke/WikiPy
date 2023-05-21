@@ -18,7 +18,7 @@ def category_page(category):
         eq_name = e['Name']
         link = eq_name.replace(" ", "%20")
         with cols[0]:
-            st.markdown(f"[{eq_name}](/WikEq?Equation={link})")
+            st.markdown(f"<a href='WikEq?Equation={link}' target = '_self'>{eq_name}</a>", unsafe_allow_html=True)
         with cols[1]:
             st.markdown(f"$$ {e['Eqn']} $$")
 

@@ -17,7 +17,7 @@ def dimension_page(dimension):
         st.markdown(f'### {dimension}')
         st.markdown(f"- Symbol: {dimj['Symbol']}")
         st.markdown(f"- Description: {dimj['Description']}")
-        st.markdown(f"- SI [Base Units](/WikEq/###Base%20Dimensions): {dimj['SI_base_unit']}")
+        st.markdown(f"- SI Base Units: {dimj['SI_base_unit']}")
         st.markdown(f"- Dimensionality: {dimj['Dimension']}")
         st.markdown(f"- [Wikipedia]({dimj['WIKI_LINK']})")
 
@@ -35,6 +35,8 @@ def dimension_page(dimension):
             eq = e[1]
             with cols[0]:
                 st.markdown(f"[{eq_name}](/WikEq?Equation={eq_link})")
+                st.markdown(f"<a href='/WikEq?Equation={eq_link}' target = '_self'> {eq_name} </a>", unsafe_allow_html=True)
+        
             with cols[1]:
                 st.markdown(f"$$ {eq} $$")
 

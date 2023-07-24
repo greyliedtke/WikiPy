@@ -13,6 +13,12 @@ Ref.page_config()
 
 c = st.container()
 with c:
+    st.markdown("## <a href='NYT' target = '_self'>NYT</a>", unsafe_allow_html=True)
+    st.markdown("- NY Times Streamlit [experimental connection](https://docs.streamlit.io/library/api-reference/connections/st.experimental_connection)")
+st.divider()
+
+c = st.container()
+with c:
     st.markdown("## <a href='WikEq' target = '_self'>WikEQ</a>", unsafe_allow_html=True)
     st.markdown("- Symbolic solving equation wiki")
 st.divider()

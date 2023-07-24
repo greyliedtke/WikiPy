@@ -30,10 +30,11 @@ class NYTDBConnection(ExperimentalBaseConnection):
     def _connect(self, **kwargs):
         return NYTAPI(st.secrets["nykey"], parse_dates=True)
 
-    def query(self, query, **kwargs):
-        cnxn = self._connect()
+    @st.cache_data
+    def query(_self, query, **kwargs):
+        cnxn = _self._connect()
         res = None
-        print(kwargs)
+        # print(kwargs)
         if query == "top_stories":
             res = cnxn.top_stories()
         elif query == "most_shared":
